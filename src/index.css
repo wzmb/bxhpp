@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;800&family=ZCOOL+XiaoWei&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    font-family: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    color: #191714;
+    background: #ece4d5;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    --page-bg-start: #f7f2e8;
+    --page-bg-end: #ece4d5;
+    --body-glow: rgba(232, 182, 84, 0.24);
+    --accent-glow: rgba(249, 115, 22, 0.16);
+    --text-main: #191714;
+    --text-soft: #4e483f;
+    --text-muted: #746f66;
+    --surface: rgba(255, 255, 255, 0.54);
+    --surface-strong: rgba(255, 255, 255, 0.74);
+    --surface-deep: rgba(255, 255, 255, 0.68);
+    --surface-note: rgba(249, 115, 22, 0.1);
+    --border-soft: rgba(32, 26, 18, 0.12);
+    --border-strong: rgba(32, 26, 18, 0.2);
+    --grid-line: rgba(32, 26, 18, 0.045);
+    --shadow-color: rgba(82, 60, 24, 0.12);
+    --rank-ghost: rgba(25, 23, 20, 0.12);
+  }
+
+  html.dark {
+    color: #f5f4ef;
+    background: #0a0d0c;
+    --page-bg-start: #131716;
+    --page-bg-end: #0a0d0c;
+    --body-glow: rgba(232, 182, 84, 0.2);
+    --accent-glow: rgba(249, 115, 22, 0.16);
+    --text-main: #f5f4ef;
+    --text-soft: #d0ccc5;
+    --text-muted: #a29e97;
+    --surface: rgba(255, 255, 255, 0.05);
+    --surface-strong: rgba(255, 255, 255, 0.08);
+    --surface-deep: rgba(0, 0, 0, 0.2);
+    --surface-note: rgba(249, 115, 22, 0.1);
+    --border-soft: rgba(255, 255, 255, 0.1);
+    --border-strong: rgba(255, 255, 255, 0.16);
+    --grid-line: rgba(255, 255, 255, 0.04);
+    --shadow-color: rgba(0, 0, 0, 0.24);
+    --rank-ghost: rgba(255, 255, 255, 0.1);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-width: 320px;
+    margin: 0;
+    background:
+      radial-gradient(circle at top, rgba(232, 182, 84, 0.08), transparent 30%),
+      linear-gradient(180deg, var(--page-bg-start) 0%, var(--page-bg-end) 100%);
+    color: var(--text-main);
+    transition:
+      background 220ms ease,
+      color 220ms ease;
+  }
+
+  body::before {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 52px 52px;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.65), transparent 95%);
+    content: '';
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  #root {
+    min-height: 100vh;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'ZCOOL XiaoWei', 'STKaiti', serif;
+  }
+
+  .bg-page {
+    background-color: var(--page-bg-end);
+  }
+
+  .page-aura {
+    background:
+      radial-gradient(circle at top, var(--body-glow), transparent 34%),
+      radial-gradient(circle at 20% 40%, var(--accent-glow), transparent 28%),
+      linear-gradient(180deg, var(--page-bg-start) 0%, var(--page-bg-end) 100%);
+  }
+
+  .text-main {
+    color: var(--text-main);
+  }
+
+  .text-soft {
+    color: var(--text-soft);
+  }
+
+  .text-muted {
+    color: var(--text-muted);
+  }
+
+  .border-soft {
+    border-color: var(--border-soft);
+  }
+
+  .surface-card {
+    border: 1px solid var(--border-soft);
+    background: var(--surface);
+    box-shadow: 0 24px 60px var(--shadow-color);
+    backdrop-filter: blur(16px);
+  }
+
+  .surface-panel {
+    border: 1px solid var(--border-soft);
+    background: var(--surface-strong);
+    backdrop-filter: blur(16px);
+  }
+
+  .surface-deep {
+    background: var(--surface-deep);
+  }
+
+  .surface-note {
+    background: var(--surface-note);
+  }
+
+  .grid-surface {
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-position: center;
+    background-size: 36px 36px;
+    mask-image: radial-gradient(circle at center, black 45%, transparent 95%);
+  }
+
+  .hero-orbit::before,
+  .hero-orbit::after {
+    position: absolute;
+    border-radius: 9999px;
+    content: '';
+  }
+
+  .hero-orbit::before {
+    inset: 28px;
+    border: 1px dashed var(--orbit-line, rgba(232, 182, 84, 0.24));
+  }
+
+  .hero-orbit::after {
+    right: 18px;
+    top: 50%;
+    height: 12px;
+    width: 12px;
+    transform: translateY(-50%);
+    background: #f97316;
+    box-shadow: 0 0 22px rgba(249, 115, 22, 0.8);
+  }
+
+  .rank-ghost {
+    color: var(--rank-ghost);
+  }
+}
