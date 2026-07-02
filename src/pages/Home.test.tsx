@@ -33,7 +33,9 @@ describe('Home', () => {
 
     expect(document.documentElement).toHaveClass('dark')
 
-    fireEvent.click(screen.getByRole('button', { name: '切换为浅色模式' }))
+    const toggleButtons = screen.getAllByRole('button', { name: '切换为浅色模式' })
+
+    fireEvent.click(toggleButtons[0])
 
     expect(document.documentElement).toHaveClass('light')
     expect(localStorage.getItem('theme')).toBe('light')
