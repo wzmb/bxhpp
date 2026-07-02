@@ -2,6 +2,8 @@ import react from '@vitejs/plugin-react'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import { defineConfig } from 'vitest/config'
 
+import { cloudflare } from "@cloudflare/vite-plugin";
+
 // https://vite.dev/config/
 export default defineConfig({
   build: {
@@ -11,12 +13,9 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: './src/test/setup.ts',
   },
-  plugins: [
-    react({
-      babel: {
-        plugins: ['react-dev-locator'],
-      },
-    }),
-    tsconfigPaths(),
-  ],
+  plugins: [react({
+    babel: {
+      plugins: ['react-dev-locator'],
+    },
+  }), tsconfigPaths(), cloudflare()],
 })
